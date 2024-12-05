@@ -158,3 +158,46 @@ function totalMarks(classObj, studentName) {
     }
 }
 totalMarks(classObj, "Ravi"); 
+totalMarks(classObj,'Aju');
+
+//Question 9
+
+function subjectMarkAvg(classObj, subjectName){
+    let total = 0
+    let subjectLength = 0
+    for(let j=0; j < classObj.students.length; j++){
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+            if(classObj.students[j].marks[i].subject == subjectName){
+               total += classObj.students[j].marks[i].mark;
+               subjectLength++;
+               break;   
+            }
+        }    
+     }
+        let avr = total / subjectLength;
+        console.log(`The average mark in ${subjectName} is ${avr}`)
+    }
+subjectMarkAvg(classObj, "English");
+subjectMarkAvg(classObj, "Maths");
+
+//Question 10
+
+function subjectTotalMark(classObj, subjectName) {
+    let total = 0
+    for(let j=0; j < classObj.students.length; j++){
+        for(let i=0; i < classObj.students[j].marks.length; i++){
+            if(classObj.students[j].marks[i].subject == subjectName){
+                total += classObj.students[j].marks[i].mark;
+                break;
+            }
+        }
+
+    }
+    console.log(`The Total mark in ${subjectName} is ${total}`) 
+}
+subjectTotalMark(classObj, "English")
+subjectTotalMark(classObj, "Physics");
+
+//Question 11
+
+
