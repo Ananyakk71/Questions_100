@@ -48,6 +48,7 @@ let classObj = {
         }
     ]
 }
+
  // 1.
 
 function className(classObj) {
@@ -92,7 +93,6 @@ function subjectName(classObj) {
 }
 subjectName(classObj)
  
-
 //Question 6.
 
 function marksOfSubject(classObj) {
@@ -106,59 +106,44 @@ function marksOfSubject(classObj) {
 
 marksOfSubject(classObj);
 
-
-
-
-
-
 //Question 7.
 
-function avrgMarks(classObj, studentName) {
-    let student = 0;
-    for (let i = 0; i < classObj.students.length; i++) {
-        if (classObj.students[i].name === studentName) {
-            student = classObj.students[i];
-            break;
+function averageMarks(classObj, studentName) {
+    let total = 0;
+    for (let j=0; j < classObj.students.length; j++){
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+            if (classObj.students[j].name === studentName){
+                total += classObj.students[j].marks[i].mark;
+                avrg = total / classObj.students[j].marks.length;
+            }
+           
         }
+       
     }
-
-    if (student) {
-        let total = 0;
-        for (let i = 0; i < student.marks.length; i++) {
-         total += student.marks[i].mark;
-        }
-        let avrg = total / student.marks.length;
-        console.log(`Average mark of ${student.name} is ${avrg}`);
-    } else {
-        console.log(`not found.`);
-    }
+    console.log(`Average mark ${studentName} is ${avrg}`);
 }
-
-avrgMarks(classObj, "Ravi"); 
-avrgMarks(classObj, "Aju");
+averageMarks(classObj, "Ravi"); 
+averageMarks(classObj,'Aju');
+averageMarks(classObj, "Binu")
 
 //Question 8
 
 function totalMarks(classObj, studentName) {
-    let student = 0;
-    for (let i = 0; i < classObj.students.length; i++) {
-        if (classObj.students[i].name === studentName) {
-            student = classObj.students[i];
-            break;
+    let total = 0;
+    for (let j=0; j < classObj.students.length; j++){
+
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+            if (classObj.students[j].name === studentName){
+                total += classObj.students[j].marks[i].mark;
+            }
         }
-    }
-    if (student) {
-        let total = 0;
-        for (let i = 0; i < student.marks.length; i++) {
-         total += student.marks[i].mark;
-        }
-        console.log(`Total mark of ${student.name} is ${total}`);
-    } else {
        
     }
+    console.log(`Total mark of ${studentName} is ${total}`);
 }
 totalMarks(classObj, "Ravi"); 
 totalMarks(classObj,'Aju');
+totalMarks(classObj, "Binu")
 
 //Question 9
 
@@ -179,6 +164,9 @@ function subjectMarkAvg(classObj, subjectName){
     }
 subjectMarkAvg(classObj, "English");
 subjectMarkAvg(classObj, "Maths");
+subjectMarkAvg(classObj, "Physics");
+subjectMarkAvg(classObj, "Chemistry");
+subjectMarkAvg(classObj, "Computer");
 
 //Question 10
 
@@ -195,9 +183,293 @@ function subjectTotalMark(classObj, subjectName) {
     }
     console.log(`The Total mark in ${subjectName} is ${total}`) 
 }
-subjectTotalMark(classObj, "English")
+subjectTotalMark(classObj, "English");
+subjectTotalMark(classObj, "Maths")
 subjectTotalMark(classObj, "Physics");
+subjectTotalMark(classObj, "Chemistry");
+subjectTotalMark(classObj, "Computer");
 
 //Question 11
 
+function highestMark(classObj, subjectName) {
+    topScore = 0
+    for(let j=0; j < classObj.students.length; j++){
+        for(let i=0; i < classObj.students[j].marks.length; i++){
+            if(classObj.students[j].marks[i].subject == subjectName){
+                if (classObj.students[j].marks[i].mark >= topScore) {
+                    topScore = classObj.students[j].marks[i].mark; 
+                    topper = classObj.students[j].name; 
+                } 
+            }
+        }
+    }
+    console.log(`${topper} scored highestmark in ${subjectName} score: ${topScore}`)
+}
 
+highestMark(classObj,"English");
+highestMark(classObj,"Maths");
+highestMark(classObj, "Physics");
+highestMark(classObj, "Chemistry");
+
+//Question12.
+
+function lowestMark(classObj, subjectName) {
+    let leastScore = Infinity;
+    for(let j=0; j < classObj.students.length; j++){
+        for(let i=0; i < classObj.students[j].marks.length; i++){
+            if(classObj.students[j].marks[i].subject == subjectName){
+                if (classObj.students[j].marks[i].mark < leastScore) {
+                    leastScore = classObj.students[j].marks[i].mark; 
+                    nameOfstudent = classObj.students[j].name; 
+                }
+            }
+        }
+    }
+    console.log(`${nameOfstudent} scored lowest mark in ${subjectName} score: ${leastScore}`)
+}
+
+lowestMark(classObj,"English");
+lowestMark(classObj,"Maths");
+lowestMark(classObj, "Physics");
+lowestMark(classObj, "Chemistry");
+
+//Question 13.
+
+function highestTotalMarks(classObj) {
+    for (let j=0; j < classObj.students.length; j++){
+        let total = 0;
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+            total += classObj.students[j].marks[i].mark;
+        }
+      if(total > topScore){
+          topScore = total; 
+        topper = classObj.students[j].name
+      }
+    }
+    console.log(`${topper} has highest total marks. Total mark is ${topScore} `)
+}
+
+highestTotalMarks(classObj);
+
+//Question 14.
+
+function lowestTotalMarks(classObj) {
+    let leastScore = Infinity;
+    for (let j=0; j < classObj.students.length; j++){
+        let total = 0;
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+            total += classObj.students[j].marks[i].mark;
+        }
+      if(total < leastScore){
+          leastScore = total; 
+        topper = classObj.students[j].name
+      }
+    }
+    console.log(`${topper} has lowest total marks. Total mark is ${leastScore} `)
+}
+
+lowestTotalMarks(classObj);
+
+//Question 15
+
+function highestAvrgsubject(classObj){
+    let total = 0
+    let highestAvrg;
+    let subjectname;
+    let subjectLength = 0
+    for(let j=0; j < classObj.students.length; j++){
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+               total += classObj.students[j].marks[i].mark;
+               subjectLength++;
+        }    
+     }
+     let avr = total / subjectLength;
+
+     if (avr > highestAvrg) {
+        highestAvrg = avr;
+        subjectname = classObj.students[j].marks[i].subject;
+    }
+    console.log(`The highest average mark in the subject ${subjectname}`)
+ }
+ 
+    highestAvrgsubject(classObj);
+
+    //Question 16.
+
+    function lowestAvrgsubject(classObj){
+        let total = 0
+        let highestAvrg;
+        let subjectname;
+        let subjectLength = 0
+        for(let j=0; j < classObj.students.length; j++){
+            for(let i = 0; i < classObj.students[j].marks.length; i++){
+                   total += classObj.students[j].marks[i].mark;
+                   subjectLength++;
+            }    
+         }
+         let avr = total / subjectLength;
+    
+         if (avr < highestAvrg) {
+            lowestAvrg = avr;
+            subjectname = classObj.students[j].marks[i].subject;
+        }
+        console.log(`The lowest average mark in the subject ${subjectname}`)
+     }
+     
+        lowestAvrgsubject(classObj);
+
+
+// Question 17.
+ 
+ function overallAvrgMarks(classObj) {
+    let total = 0;
+    for (let j=0; j < classObj.students.length; j++){
+
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+                total += classObj.students[j].marks[i].mark;
+            
+        }
+        avrg = total / classObj.students[j].marks.length;
+        avrgAll = avrg / classObj.students.length;
+        
+    }
+    console.log(`overall average mark is ${avrgAll}`);
+}
+overallAvrgMarks(classObj)
+
+ // Question 18
+
+ function overallMarks(classObj) {
+    let total = 0;
+    for (let j=0; j < classObj.students.length; j++){
+
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+                total += classObj.students[j].marks[i].mark;
+        }
+        
+    }
+    console.log(`overall total marks for the class is ${total}`)
+ }
+ overallMarks(classObj);
+
+ //Question 21.
+ let subjectTotal = {};
+ for (let j = 0; j < classObj.students.length; j++){
+    for (let i = 0; i < classObj.students[j].marks.length; i++){
+        let subject = classObj.students[j].marks[i].subject;
+        let mark = classObj.students[j].marks[i].mark;
+
+        subjectTotal[subject] = (subjectTotal[subject] || 0) + mark;
+    }
+}
+ function highestTotalMarkSub(classObj) { 
+
+    let highestTotal = 0;
+    for (let subject in subjectTotal) {
+        if (subjectTotal[subject] > highestTotal) {
+            highestTotal = subjectTotal[subject]; 
+            highestSubject = subject;
+        }
+    }
+ console.log(`The subject ${highestSubject} with the highest total mark total of ${highestTotal}`);
+ }
+highestTotalMarkSub(classObj);
+
+//Question 22.
+
+function lowestTotalMarkSub(classObj) {
+    let lowestTotal = Infinity;
+    for (let subject in subjectTotal) {
+        if (subjectTotal[subject] < lowestTotal) {
+            lowestTotal = subjectTotal[subject]; 
+            lowestSubject = subject;
+        }
+    }
+    console.log(`The subject ${lowestSubject} with the highest total mark total of ${lowestTotal}`);
+}
+
+lowestTotalMarkSub(classObj);
+
+//Question 23
+
+function highestAvrgMarkStudent(classObj) {
+    let topAvrg = 0;
+    for (let j=0; j < classObj.students.length; j++){
+        let total = 0;
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+            total += classObj.students[j].marks[i].mark;
+            avrg = total / classObj.students[j].marks.length;
+        }
+        if(avrg > topAvrg){
+            topAvrg = avrg; 
+          topper = classObj.students[j].name
+        }
+    }
+    console.log(`${topper} has highest average mark ${topAvrg}`)
+}
+highestAvrgMarkStudent(classObj)
+
+// Question 24
+
+function lowestAvrgMarkStudent(classObj) {
+    let lowestAvrg = Infinity;
+    for (j=0; j < classObj.students.length; j++){
+        let total = 0;
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+            total += classObj.students[j].marks[i].mark;
+            avrg = total / classObj.students[j].marks.length;
+        }
+        if(avrg < lowestAvrg){
+            lowestAvrg = avrg
+            topper = classObj.students[j].name
+        }
+    }
+    console.log(`${topper} has lowest average mark ${lowestAvrg}`)
+}
+lowestAvrgMarkStudent(classObj)
+
+//Question 27
+
+function scoredAboveMark(classObj, subjectName, value) {
+    let count = 0
+    classObj.students.forEach(student => {
+        student.marks.forEach(Mark => {
+          if (Mark.subject === subjectName && Mark.mark > value){
+            count++;
+          }
+        });
+    });
+    console.log(`Number of students who scored above ${value} in ${subjectName}: ${count}`);
+}
+scoredAboveMark(classObj, "English", 30);
+scoredAboveMark(classObj, "Maths", 25);
+scoredAboveMark(classObj, "Physics", 20);
+scoredAboveMark(classObj, "Chemistry", 50);
+scoredAboveMark(classObj, "Computer",40);
+
+//Question 28
+
+function scoredBelowMark(classObj, subjectName, value) {
+    let count = 0
+    classObj.students.forEach(student => {
+        student.marks.forEach(Mark => {
+            if (Mark.subject === subjectName && Mark.mark < value){
+                count++;
+            }
+        });
+    });
+    console.log(`Number of students who scored below ${value} in ${subjectName}: ${count}`);
+}
+
+scoredBelowMark(classObj, "English", 10);
+scoredBelowMark(classObj, "Maths", 40);
+scoredBelowMark(classObj, "Physics", 40);
+scoredBelowMark(classObj, "Chemistry", 50);
+scoredBelowMark(classObj, "Computer",35);
+
+
+//Question 29
+
+function scoredAboveAllSub(classObj) {
+    
+}
