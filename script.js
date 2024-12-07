@@ -428,7 +428,7 @@ function lowestAvrgMarkStudent(classObj) {
 }
 lowestAvrgMarkStudent(classObj)
 
-//Question 27
+//Question 27  
 
 function scoredAboveMark(classObj, subjectName, value) {
     let count = 0
@@ -470,6 +470,135 @@ scoredBelowMark(classObj, "Computer",35);
 
 //Question 29
 
-function scoredAboveAllSub(classObj) {
-    
+function scoredAboveAllSub(classObj,value) {
+    let count = 0;
+    classObj.students.forEach(student => {
+        if(student.marks.every(Mark => Mark.mark > value)){
+                count++;
+            }
+        })
+    console.log(`${count} no.of students scored above ${value} marks in all subjects`)
 }
+scoredAboveAllSub(classObj,30)
+
+//Question 30
+
+function scoredBelowAllSub(classObj,value) {
+    let count = 0;
+    classObj.students.forEach(student => {
+       if(student.marks.every(Mark => Mark.mark < value)){
+                count++;
+            }
+    })
+    console.log(`${count} no.of students scored below ${value} marks in all subjects`)
+}
+scoredBelowAllSub(classObj,40)
+
+//Question 31
+
+function scoredAboveMarkPercent(classObj, subjectName, value) {
+    let count = 0
+    classObj.students.forEach(student => {
+        student.marks.forEach(Mark => {
+          if (Mark.subject === subjectName && Mark.mark > value){
+            count++;
+            percetange= (count / classObj.students.length) * 100
+          }
+        });
+    });
+    console.log(`Percentage of students who scored above ${value} in ${subjectName}: ${percetange}%`);
+}
+scoredAboveMarkPercent(classObj, "English", 30);
+scoredAboveMarkPercent(classObj, "Maths", 25);
+scoredAboveMarkPercent(classObj, "Physics", 20);
+scoredAboveMarkPercent(classObj, "Chemistry", 50);
+scoredAboveMarkPercent(classObj, "Computer",40);
+
+//Question 32
+
+function scoredBelowMarkPercent(classObj, subjectName, value) {
+    let count = 0
+    classObj.students.forEach(student => {
+        student.marks.forEach(Mark => {
+          if (Mark.subject === subjectName && Mark.mark < value){
+            count++;
+            percetange= (count / classObj.students.length) * 100
+          }
+        });
+    });
+    console.log(`Percentage of students who scored below ${value} in ${subjectName}: ${percetange}%`);
+}
+scoredBelowMarkPercent(classObj, "English", 30);
+scoredBelowMarkPercent(classObj, "Maths", 25);
+scoredBelowMarkPercent(classObj, "Physics", 20);
+scoredBelowMarkPercent(classObj, "Chemistry", 50);
+scoredBelowMarkPercent(classObj, "Computer",40);
+
+//Question 33
+
+function scoredAboveAllSubPercent(classObj,value) {
+    let count = 0;
+    classObj.students.forEach(student => {
+        if(student.marks.every(Mark => Mark.mark > value)){
+                count++;
+             percetange =(count / classObj.students.length) * 100
+            }
+        })
+    console.log(`${percetange}% no.of students scored above ${value} marks in all subjects`)
+}
+scoredAboveAllSubPercent(classObj,30)
+
+//Question 34
+
+function scoredBelowAllSubPercent(classObj,value) {
+    let count = 0;
+    classObj.students.forEach(student => {
+       if(student.marks.every(Mark => Mark.mark < value)){
+                count++;
+                percetange =(count / classObj.students.length) * 100
+            }
+    })
+    console.log(`${percetange}% no.of students scored below ${value} marks in all subjects`)
+}
+scoredBelowAllSubPercent(classObj,50)
+
+//Question 35 - incomplete
+
+function highestPercentageOfMarks(classObj) {
+    let topPercentage = 0;
+    for (let j=0; j < classObj.students.length; j++){
+        let total = 0;
+        for(let i = 0; i < classObj.students[j].marks.length; i++){
+            total += classObj.students[j].marks[i].mark;
+        }
+        let percetange = (total/(classObj.students[j].marks.length * 50)) * 100
+        if(percetange > topPercentage){
+            topPercentage = percetange; 
+          topper = classObj.students[j].name
+        }
+    }
+    console.log(`${topper} has highest percentage mark ${topPercentage}%`)
+}
+highestPercentageOfMarks(classObj)
+
+//Question 36
+
+function lowestPecentageOfMarks(classObj) {
+    let leastPercentage = Infinity
+    for(let j=0; j < classObj.students.length; j++){
+        let total = 0;
+        for(i=0; i < classObj.students[j].marks.length; i++){
+            total += classObj.students[j].marks[i].mark;
+        }
+        let percentage = (total / (classObj.students[j].marks.length * 50))*100
+        if(percentage < leastPercentage){
+            leastPercentage = percentage;
+            nameOfstudent = classObj.students[j].name
+        }
+    }
+
+    console.log(`${nameOfstudent} has lowest percentage mark ${leastPercentage}%`)
+}
+lowestPecentageOfMarks(classObj);
+
+// Question 37
