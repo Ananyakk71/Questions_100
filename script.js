@@ -601,4 +601,137 @@ function lowestPecentageOfMarks(classObj) {
 }
 lowestPecentageOfMarks(classObj);
 
-// Question 37
+// Question 37 - incomplete
+
+function highestPercentageSub(classObj) {
+    let Mark = 0
+    for(let j = 0; j < classObj.students.length; j++){
+   
+        for(let i=0; i < classObj.students[j].marks; i++){
+            let Subject = classObj.students[j].marks[i].subject
+            if( Subject == classObj.students[j+1].marks[i].subject){
+               Mark += classObj.students[j].marks.mark;
+               
+            }
+        }
+        console.log(Mark)
+    }
+    
+}
+highestPercentageSub(classObj)
+
+//Question 38
+
+function lowestPercentageSub(classObj){
+    for (let j = 0; j < classObj.students.length; j++){
+        for(let i=0; i < classObj.students[j].marks.length; i++){
+            let Subject = classObj.students[j].marks[i].subject
+
+        }
+    }
+}
+lowestPercentageSub(classObj);
+
+//Question 39
+
+function highestPercentinSpecificSub(classObj, subjectName) {
+    let topPercentage = 0;
+    for(let j=0; j < classObj.students.length; j++){
+        for(let i=0; i < classObj.students[j].marks.length; i++){
+            if(classObj.students[j].marks[i].subject == subjectName){
+                percentage = (classObj.students[j].marks[i].mark / 50) * 100;
+                if (percentage > topPercentage) {
+                    topPercentage = percentage; 
+                    topper = classObj.students[j].name; 
+                } 
+            }
+        }
+    }
+    console.log(`${topper} scored highest Percentage mark in ${subjectName} score: ${percentage}%`)
+}
+
+highestPercentinSpecificSub(classObj,"English");
+highestPercentinSpecificSub(classObj,"Maths");
+highestPercentinSpecificSub(classObj, "Physics");
+highestPercentinSpecificSub(classObj, "Chemistry");
+highestPercentinSpecificSub(classObj, "Computer");
+
+//Question 40
+
+function lowestPercentinSpecificSub(classObj, subjectName){
+    let lowestPercentage = Infinity;
+    for(let j=0; j < classObj.students.length; j++){
+        for(let i=0; i < classObj.students[j].marks.length; i++){
+            if(classObj.students[j].marks[i].subject == subjectName){
+                percentage = (classObj.students[j].marks[i].mark / 50) * 100;
+                if (percentage < lowestPercentage) {
+                    lowestPercentage = percentage; 
+                    nameOfstudent = classObj.students[j].name; 
+                } 
+            }
+        }
+    }
+    console.log(`${nameOfstudent} scored highest Percentage mark in ${subjectName} score: ${lowestPercentage}%`)
+}
+lowestPercentinSpecificSub(classObj,"English");
+lowestPercentinSpecificSub(classObj,"Maths");
+lowestPercentinSpecificSub(classObj,"Physics");
+lowestPercentinSpecificSub(classObj,"Chemistry");
+lowestPercentinSpecificSub(classObj,"Computer");
+
+
+//Question 41
+
+function studentHighestpercentSub(classObj, studentName){
+    let topPercentage = 0;
+    for(let j = 0; j < classObj.students.length; j++){
+            if(classObj.students[j].name == studentName){
+                classObj.students[j].marks.forEach(Mark => {
+                    percentage = (Mark.mark / 50) * 100;
+                    if(percentage > topPercentage){
+                        topPercentage = percentage
+                        Subject = Mark.subject
+                    }
+                })
+            }
+           
+        
+    }
+console.log(`Highest percentage of marks for ${studentName} is ${topPercentage}% for ${Subject}`)
+}
+studentHighestpercentSub(classObj, "Ravi")
+studentHighestpercentSub(classObj, "Binu")
+
+
+//Question 42
+
+function studentLowestpercentSub(classObj, studentName) {
+    let lowestPercentage = Infinity;
+    for(let j=0; j < classObj.students.length; j++){
+        if(classObj.students[j].name == studentName){
+            classObj.students[j].marks.forEach(Mark => {
+                percentage = (Mark.mark / 50) * 100
+                if(percentage < lowestPercentage){
+                    lowestPercentage = percentage
+                    nameOfsubject = Mark.subject
+                }
+            })
+        }
+    }
+    console.log(`lowest percentage of marks for ${studentName} is ${lowestPercentage}% for ${Subject}`)
+}
+studentLowestpercentSub(classObj, "Binu");
+studentLowestpercentSub(classObj, "Aju");
+
+//Question 43
+
+function allStudentScoredAboveMArk(classObj, value){
+
+    classObj.students.every(student => {
+        if(student.marks.forEach(Mark => Mark.mark > value)){
+        }
+    })
+    console.log(count)
+}
+allStudentScoredAboveMArk(classObj, 30)
+
